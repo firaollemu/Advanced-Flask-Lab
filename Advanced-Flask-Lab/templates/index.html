@@ -13,20 +13,22 @@
 
 				<!-- Header -->
 					<header id="header">
-						<span class="avatar"><img src="{{url_for('static',filename='images/avatar.jpg')}}" alt="" /></span>
+						<span class="avatar">
+							<img src="{{ image_link }}" alt="" />
+						</span>
 
-            <h1>Description</h1>
+            <h1>{{user_bio}}</h1>
             <br>
             <!-- About me button -->
             <a href="#"><button style="color:white;width:40%" >More about me</button></a>
             <!--  -->
             <br> <br>
 						<ul class="icons">
-							<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
-							<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+							<li><a href="{{ social_media[0] }}" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="{{ social_media[1] }}" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="{{ social_media[2] }}" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="{{ social_media[3] }}" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+							<li><a href="{{ social_media[4] }}" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 					</header>
 
@@ -36,14 +38,15 @@
 						<!-- Thumbnails -->
 							<section class="thumbnails">
                 
+				<div class="image-gallery">			
                 <div>
                       <a href="">
-                        <img src="static/images/thumbs/01.jpg" alt="" />
+                        <img src="{{url_for('static' , filename='images/thumbs/01.jpg')}}" alt="" />
                         <h3>Caption... blah blah blah</h3>
                       </a>
                 
                       <a href="">
-                        <img src="url_for('static',filename='images/thumbs/02.jpg')" alt="" />
+                        <img src="{{url_for('static',filename='images/thumbs/02.jpg')}}" alt="" />
                         <h3>Caption... blah blah blah</h3>
                       </a>
                 </div>    
@@ -53,8 +56,21 @@
                         <h3>Caption... blah blah blah</h3>
                       </a>
                 </div>  
+			</div>	
+
+
+			<div>
+				<a href="">
+				{% for post in posts %}
+					<img src="{{post}}" alt="" class="center" /> 
+					<h3 align="center">{{posts[post]}}</h3>
+				{% endfor %}
+				</a>
+			</div>
 
 							</section>
+
+
 
 					</section>
 
@@ -64,6 +80,29 @@
 					</footer>
 
 			</div>
+
+
+			<style>
+				img {
+					width: 250px;
+				}
+
+				.center {
+					display: block;
+					margin-left: auto;
+					margin-right: auto;
+					width: 50%;
+				}
+
+				.image-gallery {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: space-between;
+				}
+
+				
+
+			</style>
 
 		<!-- Scripts -->
 			<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
